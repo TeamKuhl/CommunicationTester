@@ -97,7 +97,17 @@ namespace CommunicationTester
                 {
                     Console.Write("S: ");
                     string line = Console.ReadLine();
-                    string[] data = line.Split(new Char[] { ';' }, 2);
+                    string[] data;
+                    if (line.Contains(";"))
+                    {
+                        data = line.Split(new Char[] { ';' }, 2);
+                    }
+                    else
+                    {
+                        data = new string[2];
+                        data[0] = line;
+                        data[1] = "";
+                    }
                     c.send(data[0], data[1]);
                 }
             }
